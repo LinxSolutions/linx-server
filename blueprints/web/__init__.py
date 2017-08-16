@@ -56,9 +56,9 @@ def get_user(user):
 	}
 
 
-@api.route('/lesson/<username>/<confirmation_key>')
-def lesson(username, confirmation_key):
-	user = g.mongo.db.linx.users.find_one({"username": username, "confirmation_key": confirmation_key})
+# @api.route('/lesson/<username>/<confirmation_key>')
+# def lesson(username, confirmation_key):
+# 	user = g.mongo.db.linx.users.find_one({"username": username, "confirmation_key": confirmation_key})
 	
 
 
