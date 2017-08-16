@@ -1,0 +1,52 @@
+languages [
+	{
+		language_id
+		proficiency
+		media_watched [
+			media_id
+		]
+		lessons [
+			{
+				lesson_id
+				proficiency
+				questions [
+					{
+						question_id
+						correct
+						incorrect
+						proficiency
+					}
+				]
+			}
+		]
+	}
+]
+
+
+languages [
+	{
+		language_id
+		name
+		lessons [
+			{
+				lesson_id
+				name
+				media [
+					{
+						media_id
+						name
+						url
+					}
+				]
+				questions [
+					{
+						question_id
+						type
+						question
+						answer
+					}
+				]
+			}
+		]
+	}
+]
