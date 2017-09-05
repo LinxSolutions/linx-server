@@ -1,4 +1,4 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, Response
 import json
 import string
 import random
@@ -35,11 +35,11 @@ def send_email(email, body):
 
 
 def error_msg(msg):
-	return '{"status": "error", "message": "'+msg+'"}'
+	return build_response('{"status": "error", "message": "'+msg+'"}')
 
 
 def success_msg(response):
-	return '{"status": "success", "response": '+json.dumps(response)+'}'
+	return build_response('{"status": "success", "response": '+json.dumps(response)+'}')
 
 
 def get_user(user):
@@ -50,10 +50,16 @@ def get_user(user):
 		"email": user['email'],
 		"language_id": user['language_id'],
 		"plan_id": user['plan_id'],
-		"confirmation_key", user['confirmation_key']
+		"confirmation_key": user['confirmation_key'],
 		"is_confirmed": user['is_confirmed'],
 		"is_suspended": user['is_suspended']
 	}
+
+
+def build_response(response):
+	resp = Response(response)
+	resp.headers['Access-Control-Allow-Origin'] = '*'
+	return resp
 
 
 # @api.route('/lesson/<username>/<confirmation_key>')
