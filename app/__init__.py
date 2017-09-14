@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, request
+from flask import Flask, render_template, url_for, request, redirect
 from blueprints.web import api
 from flask_pymongo import PyMongo
 from flask_bcrypt import Bcrypt
