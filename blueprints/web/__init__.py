@@ -1,4 +1,4 @@
-from flask import Blueprint, request, Response
+from flask import Blueprint, request, Response, redirect
 import json
 import string
 import random
@@ -48,11 +48,11 @@ def get_user(user):
 		"lname": user['lname'],
 		"username": user['username'],
 		"email": user['email'],
-		"language_id": user['language_id'],
+		"languages": user['languages'],
 		"plan_id": user['plan_id'],
 		"confirmation_key": user['confirmation_key'],
-		"is_confirmed": user['is_confirmed'],
-		"is_suspended": user['is_suspended']
+		"isConfirmed": user['isConfirmed'],
+		"isSuspended": user['isSuspended']
 	}
 
 
@@ -65,14 +65,181 @@ def build_response(response):
 # @api.route('/lesson/<username>/<confirmation_key>')
 # def lesson(username, confirmation_key):
 # 	user = g.mongo.db.linx.users.find_one({"username": username, "confirmation_key": confirmation_key})
+
+@api.route('/lessons', methods=['POST'])
+def lessons():
+	if request.method == 'POST':
+		username = request.form['username']
+		language_id = int(request.form['language_id'])
+
+		language = g.mongo.db.linx.languages.find_one({})[str(language_id-1)]
+
+		user_lessons = g.mongo.db.linx.users.find_one({"username": username})['languages'][language_id-1]['lessons']
+
+
+		for lesson in language['lessons']:
+			for user_lesson in user_lessons:
+				if lesson['lesson_id'] == user_lesson['lesson_id']:
+					for question in lesson['questions']:
+						for user_question in user_lesson['questions']:
+							if question['question_id'] == user_question['question_id']:
+								question['results'] = user_question
+
+		return success_msg(language['lessons'])
+
+	else:
+		return error_msg('Failed')
+
+
+
+# @api.route('/media', methods=['POST'])
+# def media():
+# 	if request.method == 'POST':
+# 		username = request.form['username']
+# 		language_id = request.form['language_id']
+# 		lesson_id = request.form['lesson_id']
+
+
+		
+
+@api.route('/lesson', methods=['POST'])
+def lesson():
+	if request.method == 'POST':
+		title = request.form['title']
+		subtitle = request.form['subtitle']
+		language_id = int(request.form['language_id'])
+
+		language = g.mongo.db.linx.languages.find_one({})[str(language_id-1)]
+
+		questions = []
+
+		for lesson in language['lessons']:
+			for media in lesson['media']:
+				if media['title'] == title:
+					for q in lesson['questions']:
+						q['lesson_id'] = lesson['lesson_id']
+					questions.extend(lesson['questions'])
+					break
+
+		final = []
+
+		l = []
+
+		captions = g.mongo.db.linx.captions.find_one({'title': title, 'subtitle': subtitle})['captions']
+		for caption in captions:
+			words = caption['text'].lower().split()
+			for word in words:
+				for question in questions:
+					if question['translation'] == '' or question['transliteration'] == '':
+						if word == question['word']:
+							if len(word) > 4:
+								if word not in l:
+									print word
+									final.append(question)
+									l.append(word)
+
+		return success_msg(final)
+	else:
+		return error_msg('Failed')
+
+
+
+
+
+@api.route('/progress', methods=['POST'])
+def progress():
+	if request.method == 'POST':
+		username = request.form['username']
+		language_id = request.form['language_id']
+		lesson_id = request.form['lesson_id']
+		question_id = request.form['question_id']
+		mark = request.form['mark']
+
+		user_lessons = g.mongo.db.linx.users.find_one({"username": username})['languages'][language_id-1]['lessons']
+
+		exists = False
+
+		for lesson in user_lessons:
+			if lesson_id == lesson['lesson_id']:
+				for question in lesson['question']:
+					if question_id in question['question_id']:
+						
+						user_lessons.update(
+						  { 
+						    "username" : username, 
+						    "languages.language_id" : language_id, 
+						    "languages.lessons.lesson_id" : lesson_id,
+						    "languages.lessons.questions.question_id": question_id
+						  },
+						  { 
+							'$set': { "languages.lessons.questions.$."+mark : question[mark]+1 } 
+						  },
+						  false,
+						  true
+						)
+						exists = True
+						break
+
+
+		if exists is not True:
+			correct = 0
+			incorrect = 0
+
+			if mark == 'correct':
+				correct = 1
+			else:
+				incorrect = 1
+
+			user_lessons.update(
+				{
+					"username" : username, 
+				    "languages.language_id" : language_id, 
+				    "languages.lessons.lesson_id" : lesson_id
+				}, 
+				{
+					'$push': {
+						'questions': {
+							'question_id': question_id,
+							'correct': correct,
+							'incorrect': incorrect
+						}
+					}
+				}
+			)
+
+		return success_msg(lessons)
+	return error_msg('Failed')
+
+
+
+
+
+
+@api.route('/scrap', methods=['GET', 'POST'])
+def scrap():
+	c = request.form['captions']
+	c = json.loads(c)
 	
+	exists = g.mongo.db.linx.captions.find_one({'title': c['title'], 'subtitle': c['subtitle']})
+
+	if exists is None:
+
+		inserted = g.mongo.db.linx.captions.insert_one(c)
+
+		if inserted is not None:
+			return success_msg({'inserted': True})
+		else:
+			return error_msg('Failed to insert captions')
+
+	else:
+		return error_msg('Failed to insert captions')
 
 
 @api.route('/confirm/<username>/<confirmation_key>')
 def confirm(username, confirmation_key):
 	user = g.mongo.db.linx.users.find_one({"username": username, "confirmation_key": confirmation_key})
 	if user is not None:
-		g.mongo.db.linx.users.update_one({"username": username}, {"$set": {"is_confirmed": True}})
+		g.mongo.db.linx.users.update_one({"username": username}, {"$set": {"isConfirmed": True}})
 		return success_msg(get_user(user))
 	return error_msg('the user does not exist')
 
@@ -83,62 +250,55 @@ def login():
 		username = request.form['username']
 		password = request.form['password']
 		user = g.mongo.db.linx.users.find_one({"username": username})
+		print user
 		if user is not None:
 			if g.bcrypt.check_password_hash(user["password"], password):
-				if user['is_confirmed']:
-					if user['is_suspended'] is False:
+				if user['isConfirmed']:
+					if user['isSuspended'] is False:
 						return success_msg(get_user(user))
-					return error_msg('your account has been suspended')
-				return error_msg('a confirmation email has been sent to '+user['email'])
-		return error_msg('username or password incorrect')
-	return error_msg('invalid request method')
+					return error_msg('Your account has been suspended.')
+				return error_msg('A confirmation email has been sent to '+user['email']+'.')
+		return error_msg('Username or Password Incorrect')
+	return error_msg('Something weird just happened at our end.')
 
 
 @api.route('/signup', methods=['GET', 'POST'])
 def signup():
 	if request.method == 'POST':
-		fname = request.form['fname']
-		lname = request.form['lname']
-		username = request.form['username']
-		email = request.form['email']
-		password = request.form['password']
-		confirm = request.form['confirm']
+		u = request.get_json()
+		u['isConfirmed'] = False
+		u['isSuspended'] = False
 		
-		language_id = request.form['language_id']
-		plan_id = request.form['plan_id']
+		if u['password'] == u['confirm']:
+			u.pop('confirm', None)
+			username_exist = g.mongo.db.linx.users.find_one({"username": u['username']})
+			email_exist = g.mongo.db.linx.users.find_one({"email": u['email']})
 
-		if password == confirm:
+			if email_exist is None:
+				if username_exist is None:
+					password = g.bcrypt.generate_password_hash(u['password'])
+					confirmation_key = generate_random()
+					
+					u['password'] = password
+					u['confirmation_key'] = confirmation_key
+					u['plan_id'] = 0
+					u['language_id'] = [1]
 
-			user = g.mongo.db.linx.users.find_one({"username": username})
+					user_id = g.mongo.db.linx.users.insert_one(u)
 
-			if user is None:
-
-				password = g.bcrypt.generate_password_hash(password)
-
-				confirmation_key = generate_random()
-
-				user_id = g.mongo.db.linx.users.insert_one({
-					"fname": fname,
-					"lname": lname,
-					"username": username,
-					"email": email,
-					"password": password,
-					"language_id": [language_id],
-					"plan_id": plan_id,
-					"confirmation_key": confirmation_key,
-					"is_confirmed": False,
-					"is_suspended": False
-					}).inserted_id
-
-				
-				if user_id is not None:
-					print user_id
-					send_confirmation_email(fname, email, confirmation_key)
-					return success_msg({"email": email})
-				return error_msg('failed to create user')
-			return error_msg('username is unavailable')
-		return error_msg('passwords do not match')
-	return error_msg('invalid request method')
+					if user_id is not None:
+						send_confirmation_email(u['fname'], u['email'], u['confirmation_key'])
+						return success_msg({'email': u['email']})
+					else:
+						return error_msg('An unexpected error has occured.')
+				else:
+					return error_msg('Username is unavailable.')
+			else:
+				return error_msg('An account is already registed with this email.')
+		else:
+			return error_msg('Passwords do not match.')
+	else:
+		return error_msg('Something went wrong.')
 
 
 

@@ -1,0 +1,258 @@
+<section class="hero hero-bg is-fullheight is-white">
+    <div class="hero-head">
+        <div class="container">
+
+
+            <nav class="navbar">
+                <div class="navbar-brand">
+                    <a class="navbar-item" href="/">
+                        <img src="{{ url_for('static', filename='img/logo-horizontal.png') }}" alt="" width="150">
+                    </a>
+
+                    <div class="navbar-burger burger" data-target="navMenu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+
+                <div id="navMenu" class="navbar-menu">
+
+
+                    <div class="navbar-end">
+                        <a class="nav-item" onclick="scrollTo('gettingstarted')">
+                            Login
+                        </a>
+
+                        <a class="nav-item" onclick="scrollTo('gettingstarted')">
+                            Sign Up
+                        </a>
+                    </div>
+                </div>
+            </nav>
+
+
+        </div>
+    </div>
+
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <h3 class="title is-2">
+                Learn Japanese Just by Watching Anime
+            </h3>
+            <h4 class="subtitle is-4">Stream on Netflix, Hulu, Crunchyroll and More with over 70 Titles to Choose From</h4>
+            <a class="button is-info is-medium" onclick="scrollTo('learnmore')">Learn More</a>
+            <a class="button is-success is-medium" onclick="scrollTo('gettingstarted')">Get Started</a>
+
+            <div class="is-space"></div>
+
+        </div>
+    </div>
+</section>
+
+
+
+<section id="learnmore" class="hero is-fullheight is-white">
+    <div class="hero-body">
+        <div class="container">
+            <h3 class="title">How it Works</h3>
+
+            <br>
+
+            <div class="columns">
+
+                <div class="column">
+
+                    <div class="card">
+
+                        <div class="number">1</div>
+
+                        <div class="card-image">
+                            <figure class="image is-3by2">
+                                <img src="{{ url_for('static', filename='img/step1.PNG') }}" alt="">
+                            </figure>
+                        </div>
+                        <div class="card-content">
+                            <h5 class="subtitle is-5">
+                                Install Linx Chrome Extention
+                            </h5>
+                            <div class="content">
+                                Once installed, you will be automatically directed to a sign up form where you can describe your skill level and preferences.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+                <div class="column is-1"></div>
+
+
+
+                <div class="column">
+
+                    <div class="card">
+
+                        <div class="number">2</div>
+
+                        <div class="card-image">
+                            <figure class="image is-3by2">
+                                <img src="{{ url_for('static', filename='img/step2.PNG') }}" alt="">
+                            </figure>
+                        </div>
+                        <div class="card-content">
+                            <h5 class="subtitle is-5">
+                                Select a Title
+                            </h5>
+                            <div class="content">
+                               Linx generates a custom curriculum and roadmap for you and changes as you keep watching more anime. 
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+                <div class="column is-1"></div>
+
+
+
+                <div class="column">
+
+                    <div class="card">
+
+                        <div class="number">3</div>
+
+                        <div class="card-image">
+                            <figure class="image is-3by2">
+                                <img src="{{ url_for('static', filename='img/step3.png') }}" alt="">
+                            </figure>
+                        </div>
+                        <div class="card-content">
+                            <h5 class="subtitle is-5">
+                                Watch and Read Subtitles
+                            </h5>
+                            <div class="content">
+                                Tranlation and transliteration will accompany key words and phrases and will be highlighted for you.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+            <br>
+
+            <div class="columns">
+
+                <div class="column is-2"></div>
+
+                <div class="column">
+
+                    <div class="card">
+
+                        <div class="number">4</div>
+
+                        <div class="card-image">
+                            <figure class="image is-3by2">
+                                <img src="{{ url_for('static', filename='img/step4.PNG') }}" alt="">
+                            </figure>
+                        </div>
+                        <div class="card-content">
+                            <h5 class="subtitle is-5">
+                                Take a Quiz After Every Episode
+                            </h5>
+                            <div class="content">
+                               Quizzes will be based on highlighted words and phrases as well as grammer. Earn satisfactory scores on quizzes to level up. 
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+                <div class="column is-1"></div>
+
+
+
+                <div class="column">
+
+                    <div class="card">
+
+                        <div class="number">5</div>
+
+                        <div class="card-image">
+                            <figure class="image is-3by2">
+                                <img src="{{ url_for('static', filename='img/step5.PNG') }}" alt="">
+                            </figure>
+                        </div>
+                        <div class="card-content">
+                            <h5 class="subtitle is-5">
+                                Track Your Progress
+                            </h5>
+                            <div class="content">
+                               Gain insight into your strengths and weaknesses and compare your progress with your friends and the community. 
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+                <div class="column is-2"></div>
+
+
+            </div>
+
+
+
+
+        </div>
+    </div>
+</section>
+
+
+<section id="gettingstarted" class="hero is-medium is-dark">
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <h3 class="title">Sign Up for Beta</h3>
+            <h4 class="subtitle is-4">We'll let you know when we're ready.</h4>
+
+            <form class="field has-addons" action="//linxsolutions.us16.list-manage.com/subscribe/post?u=980682fc5f7fba3023e0ef1e4&id=96a0653001" method="post">
+                <p class="control is-expanded">
+                    <input class="input is-fullwidth is-large" type="email" name="EMAIL"  placeholder="jane.doe@example.com">
+                </p>
+
+                <p class="control">
+                    <div style="position:absolute;left:-5000px;"><input type="text" name="b_980682fc5f7fba3023e0ef1e4_96a0653001" tabindex="-1" value=""></div>
+                    <div class="clear"><input type="submit" value="SUBSCRIBE" name="subscribe" id="mc-embedded-subscribe" class="button is-black orange is-large is-fullwidth"></div>
+                </p>
+            </form>
+
+
+
+        </div>
+    </div>
+</section>
+
+
+<footer class="footer">
+    <div class="container">
+        <div class="content has-text-centered">
+            <small>
+                Copyrights and trademarks for the anime, and other promotional materials are held by their respective owners and their use is allowed under the fair use clause of the Copyright Law.
+            </small>
+            <p>
+                &copy; 2017 Linx Solutions, Inc.
+            </p>
+        </div>
+    </div>
+</footer>

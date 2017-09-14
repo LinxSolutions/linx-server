@@ -1,0 +1,708 @@
+{
+    "_id" : ObjectId("59b0c900640d607679f2a61b"),
+    "Hiragana" : [ 
+        {
+            "translation" : "あ",
+            "transliteration" : "a"
+        }, 
+        {
+            "translation" : "い",
+            "transliteration" : "i"
+        }, 
+        {
+            "translation" : "う",
+            "transliteration" : "u"
+        }, 
+        {
+            "translation" : "え",
+            "transliteration" : "e"
+        }, 
+        {
+            "translation" : "お",
+            "transliteration" : "o"
+        }, 
+        {
+            "translation" : "か",
+            "transliteration" : "ka"
+        }, 
+        {
+            "translation" : "き",
+            "transliteration" : "ki"
+        }, 
+        {
+            "translation" : "く",
+            "transliteration" : "ku"
+        }, 
+        {
+            "translation" : "け",
+            "transliteration" : "ke"
+        }, 
+        {
+            "translation" : "こ",
+            "transliteration" : "ko"
+        }, 
+        {
+            "translation" : "が",
+            "transliteration" : "ga"
+        }, 
+        {
+            "translation" : "ぎ",
+            "transliteration" : "gi"
+        }, 
+        {
+            "translation" : "ぐ",
+            "transliteration" : "gu"
+        }, 
+        {
+            "translation" : "げ",
+            "transliteration" : "ge"
+        }, 
+        {
+            "translation" : "ご",
+            "transliteration" : "go"
+        }, 
+        {
+            "translation" : "さ",
+            "transliteration" : "sa"
+        }, 
+        {
+            "translation" : "し",
+            "transliteration" : "shi"
+        }, 
+        {
+            "translation" : "す",
+            "transliteration" : "su"
+        }, 
+        {
+            "translation" : "せ",
+            "transliteration" : "se"
+        }, 
+        {
+            "translation" : "そ",
+            "transliteration" : "so"
+        }, 
+        {
+            "translation" : "ざ",
+            "transliteration" : "za"
+        }, 
+        {
+            "translation" : "じ",
+            "transliteration" : "ji"
+        }, 
+        {
+            "translation" : "ず",
+            "transliteration" : "zu"
+        }, 
+        {
+            "translation" : "ぜ",
+            "transliteration" : "ze"
+        }, 
+        {
+            "translation" : "ぞ",
+            "transliteration" : "zo"
+        }, 
+        {
+            "translation" : "た",
+            "transliteration" : "ta"
+        }, 
+        {
+            "translation" : "ち",
+            "transliteration" : "chi"
+        }, 
+        {
+            "translation" : "つ",
+            "transliteration" : "tsu"
+        }, 
+        {
+            "translation" : "て",
+            "transliteration" : "te"
+        }, 
+        {
+            "translation" : "と",
+            "transliteration" : "to"
+        }, 
+        {
+            "translation" : "だ",
+            "transliteration" : "da"
+        }, 
+        {
+            "translation" : "ぢ",
+            "transliteration" : "ji"
+        }, 
+        {
+            "translation" : "づ",
+            "transliteration" : "zu"
+        }, 
+        {
+            "translation" : "で",
+            "transliteration" : "de"
+        }, 
+        {
+            "translation" : "ど",
+            "transliteration" : "do"
+        }, 
+        {
+            "translation" : "な",
+            "transliteration" : "na"
+        }, 
+        {
+            "translation" : "に",
+            "transliteration" : "ni"
+        }, 
+        {
+            "translation" : "ぬ",
+            "transliteration" : "nu"
+        }, 
+        {
+            "translation" : "ね",
+            "transliteration" : "ne"
+        }, 
+        {
+            "translation" : "の",
+            "transliteration" : "no"
+        }, 
+        {
+            "translation" : "は",
+            "transliteration" : "ha"
+        }, 
+        {
+            "translation" : "ひ",
+            "transliteration" : "hi"
+        }, 
+        {
+            "translation" : "ふ",
+            "transliteration" : "fu"
+        }, 
+        {
+            "translation" : "へ",
+            "transliteration" : "he"
+        }, 
+        {
+            "translation" : "ほ",
+            "transliteration" : "ho"
+        }, 
+        {
+            "translation" : "ば",
+            "transliteration" : "ba"
+        }, 
+        {
+            "translation" : "び",
+            "transliteration" : "bi"
+        }, 
+        {
+            "translation" : "ぶ",
+            "transliteration" : "bu"
+        }, 
+        {
+            "translation" : "べ",
+            "transliteration" : "be"
+        }, 
+        {
+            "translation" : "ぼ",
+            "transliteration" : "bo"
+        }, 
+        {
+            "translation" : "ぱ",
+            "transliteration" : "pa"
+        }, 
+        {
+            "translation" : "ぴ",
+            "transliteration" : "pi"
+        }, 
+        {
+            "translation" : "ぷ",
+            "transliteration" : "pu"
+        }, 
+        {
+            "translation" : "ぺ",
+            "transliteration" : "pe"
+        }, 
+        {
+            "translation" : "ぽ",
+            "transliteration" : "po"
+        }, 
+        {
+            "translation" : "ま",
+            "transliteration" : "ma"
+        }, 
+        {
+            "translation" : "み",
+            "transliteration" : "mi"
+        }, 
+        {
+            "translation" : "む",
+            "transliteration" : "mu"
+        }, 
+        {
+            "translation" : "め",
+            "transliteration" : "me"
+        }, 
+        {
+            "translation" : "も",
+            "transliteration" : "mo"
+        }, 
+        {
+            "translation" : "や",
+            "transliteration" : "ya"
+        }, 
+        {
+            "translation" : "ゆ",
+            "transliteration" : "yu"
+        }, 
+        {
+            "translation" : "よ",
+            "transliteration" : "yo"
+        }, 
+        {
+            "translation" : "ら",
+            "transliteration" : "ra"
+        }, 
+        {
+            "translation" : "り",
+            "transliteration" : "ri"
+        }, 
+        {
+            "translation" : "る",
+            "transliteration" : "ru"
+        }, 
+        {
+            "translation" : "れ",
+            "transliteration" : "re"
+        }, 
+        {
+            "translation" : "ろ",
+            "transliteration" : "ro"
+        }, 
+        {
+            "translation" : "わ",
+            "transliteration" : "wa"
+        }, 
+        {
+            "translation" : "を",
+            "transliteration" : "wo"
+        }, 
+        {
+            "translation" : "ん",
+            "transliteration" : "n/m"
+        }, 
+        {
+            "translation" : "きゃ",
+            "transliteration" : "kya"
+        }, 
+        {
+            "translation" : "きゅ",
+            "transliteration" : "kyu"
+        }, 
+        {
+            "translation" : "きょ",
+            "transliteration" : "kyo"
+        }, 
+        {
+            "translation" : "ぎゃ",
+            "transliteration" : "gya"
+        }, 
+        {
+            "translation" : "ぎゅ",
+            "transliteration" : "gyu"
+        }, 
+        {
+            "translation" : "ぎょ",
+            "transliteration" : "gyo"
+        }, 
+        {
+            "translation" : "しゃ",
+            "transliteration" : "sha"
+        }, 
+        {
+            "translation" : "しゅ",
+            "transliteration" : "shu"
+        }, 
+        {
+            "translation" : "しょ",
+            "transliteration" : "sho"
+        }, 
+        {
+            "translation" : "じゃ",
+            "transliteration" : "ja"
+        }, 
+        {
+            "translation" : "じゅ",
+            "transliteration" : "ju"
+        }, 
+        {
+            "translation" : "じょ",
+            "transliteration" : "jo"
+        }, 
+        {
+            "translation" : "ちゃ",
+            "transliteration" : "cha"
+        }, 
+        {
+            "translation" : "ちゅ",
+            "transliteration" : "chu"
+        }, 
+        {
+            "translation" : "ちょ",
+            "transliteration" : "cho"
+        }, 
+        {
+            "translation" : "にゃ",
+            "transliteration" : "nya"
+        }, 
+        {
+            "translation" : "にゅ",
+            "transliteration" : "nyu"
+        }, 
+        {
+            "translation" : "にょ",
+            "transliteration" : "nyo"
+        }, 
+        {
+            "translation" : "ひゃ",
+            "transliteration" : "hya"
+        }, 
+        {
+            "translation" : "ひゅ",
+            "transliteration" : "hyu"
+        }, 
+        {
+            "translation" : "ひょ",
+            "transliteration" : "hyo"
+        }, 
+        {
+            "translation" : "びゃ",
+            "transliteration" : "bya"
+        }, 
+        {
+            "translation" : "びゅ",
+            "transliteration" : "byu"
+        }, 
+        {
+            "translation" : "びょ",
+            "transliteration" : "byo"
+        }, 
+        {
+            "translation" : "ぴゃ",
+            "transliteration" : "pya"
+        }, 
+        {
+            "translation" : "ぴゅ",
+            "transliteration" : "pyu"
+        }, 
+        {
+            "translation" : "ぴょ",
+            "transliteration" : "pyo"
+        }, 
+        {
+            "translation" : "みゃ",
+            "transliteration" : "mya"
+        }, 
+        {
+            "translation" : "みゅ",
+            "transliteration" : "myu"
+        }, 
+        {
+            "translation" : "みょ",
+            "transliteration" : "myo"
+        }, 
+        {
+            "translation" : "りゃ",
+            "transliteration" : "rya"
+        }, 
+        {
+            "translation" : "りゅ",
+            "transliteration" : "ryu"
+        }, 
+        {
+            "translation" : "りょ",
+            "transliteration" : "ryo"
+        }
+    ],
+    "Katakana" : [ 
+        {
+            "translation" : "ア",
+            "transliteration" : "a"
+        }, 
+        {
+            "translation" : "カ",
+            "transliteration" : "ka"
+        }, 
+        {
+            "translation" : "ガ",
+            "transliteration" : "ga"
+        }, 
+        {
+            "translation" : "サ",
+            "transliteration" : "sa"
+        }, 
+        {
+            "translation" : "ザ",
+            "transliteration" : "za"
+        }, 
+        {
+            "translation" : "タ",
+            "transliteration" : "ta"
+        }, 
+        {
+            "translation" : "ダ",
+            "transliteration" : "da"
+        }, 
+        {
+            "translation" : "ナ",
+            "transliteration" : "na"
+        }, 
+        {
+            "translation" : "ハ",
+            "transliteration" : "ha"
+        }, 
+        {
+            "translation" : "バ",
+            "transliteration" : "ba"
+        }, 
+        {
+            "translation" : "パ",
+            "transliteration" : "pa"
+        }, 
+        {
+            "translation" : "マ",
+            "transliteration" : "ma"
+        }, 
+        {
+            "translation" : "ヤ",
+            "transliteration" : "ya"
+        }, 
+        {
+            "translation" : "ラ",
+            "transliteration" : "ra"
+        }, 
+        {
+            "translation" : "ワ",
+            "transliteration" : "wa"
+        }, 
+        {
+            "translation" : "イ",
+            "transliteration" : "i"
+        }, 
+        {
+            "translation" : "キ",
+            "transliteration" : "ki"
+        }, 
+        {
+            "translation" : "ギ",
+            "transliteration" : "gi"
+        }, 
+        {
+            "translation" : "シ",
+            "transliteration" : "shi"
+        }, 
+        {
+            "translation" : "ジ",
+            "transliteration" : "ji"
+        }, 
+        {
+            "translation" : "チ",
+            "transliteration" : "chi"
+        }, 
+        {
+            "translation" : "ヂ",
+            "transliteration" : "ji"
+        }, 
+        {
+            "translation" : "ニ",
+            "transliteration" : "ni"
+        }, 
+        {
+            "translation" : "ヒ",
+            "transliteration" : "hi"
+        }, 
+        {
+            "translation" : "ビ",
+            "transliteration" : "bi"
+        }, 
+        {
+            "translation" : "ピ",
+            "transliteration" : "pi"
+        }, 
+        {
+            "translation" : "ミ",
+            "transliteration" : "mi"
+        }, 
+        {
+            "translation" : "ユ",
+            "transliteration" : "yu"
+        }, 
+        {
+            "translation" : "リ",
+            "transliteration" : "ri"
+        }, 
+        {
+            "translation" : "ヲ",
+            "transliteration" : "wo"
+        }, 
+        {
+            "translation" : "ウ",
+            "transliteration" : "u"
+        }, 
+        {
+            "translation" : "ク",
+            "transliteration" : "ku"
+        }, 
+        {
+            "translation" : "グ",
+            "transliteration" : "gu"
+        }, 
+        {
+            "translation" : "ス",
+            "transliteration" : "su"
+        }, 
+        {
+            "translation" : "ズ",
+            "transliteration" : "zu"
+        }, 
+        {
+            "translation" : "ツ",
+            "transliteration" : "tsu"
+        }, 
+        {
+            "translation" : "ヅ",
+            "transliteration" : "zu"
+        }, 
+        {
+            "translation" : "ヌ",
+            "transliteration" : "nu"
+        }, 
+        {
+            "translation" : "フ",
+            "transliteration" : "fu"
+        }, 
+        {
+            "translation" : "ブ",
+            "transliteration" : "bu"
+        }, 
+        {
+            "translation" : "プ",
+            "transliteration" : "pu"
+        }, 
+        {
+            "translation" : "ム",
+            "transliteration" : "mu"
+        }, 
+        {
+            "translation" : "ヨ",
+            "transliteration" : "yo"
+        }, 
+        {
+            "translation" : "ル",
+            "transliteration" : "ru"
+        }, 
+        {
+            "translation" : "ン",
+            "transliteration" : "n/m"
+        }, 
+        {
+            "translation" : "エ",
+            "transliteration" : "e"
+        }, 
+        {
+            "translation" : "ケ",
+            "transliteration" : "ke"
+        }, 
+        {
+            "translation" : "ゲ",
+            "transliteration" : "ge"
+        }, 
+        {
+            "translation" : "セ",
+            "transliteration" : "se"
+        }, 
+        {
+            "translation" : "ゼ",
+            "transliteration" : "ze"
+        }, 
+        {
+            "translation" : "テ",
+            "transliteration" : "te"
+        }, 
+        {
+            "translation" : "デ",
+            "transliteration" : "de"
+        }, 
+        {
+            "translation" : "ネ",
+            "transliteration" : "ne"
+        }, 
+        {
+            "translation" : "ヘ",
+            "transliteration" : "he"
+        }, 
+        {
+            "translation" : "ベ",
+            "transliteration" : "be"
+        }, 
+        {
+            "translation" : "ペ",
+            "transliteration" : "pe"
+        }, 
+        {
+            "translation" : "メ",
+            "transliteration" : "me"
+        }, 
+        {
+            "translation" : "レ",
+            "transliteration" : "re"
+        }, 
+        {
+            "translation" : "オ",
+            "transliteration" : "o"
+        }, 
+        {
+            "translation" : "コ",
+            "transliteration" : "ko"
+        }, 
+        {
+            "translation" : "ゴ",
+            "transliteration" : "go"
+        }, 
+        {
+            "translation" : "ソ",
+            "transliteration" : "so"
+        }, 
+        {
+            "translation" : "ゾ",
+            "transliteration" : "zo"
+        }, 
+        {
+            "translation" : "ト",
+            "transliteration" : "to"
+        }, 
+        {
+            "translation" : "ド",
+            "transliteration" : "do"
+        }, 
+        {
+            "translation" : "ノ",
+            "transliteration" : "no"
+        }, 
+        {
+            "translation" : "ホ",
+            "transliteration" : "ho"
+        }, 
+        {
+            "translation" : "ボ",
+            "transliteration" : "bo"
+        }, 
+        {
+            "translation" : "ポ",
+            "transliteration" : "po"
+        }, 
+        {
+            "translation" : "モ",
+            "transliteration" : "mo"
+        }, 
+        {
+            "translation" : "ロ",
+            "transliteration" : "ro"
+        }
+    ],
+    "Kanji" : []
+}
