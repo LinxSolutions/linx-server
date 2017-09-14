@@ -1,4 +1,5 @@
 from flask import Blueprint, request, Response, redirect
+from sparkpost import SparkPost
 import json
 import string
 import random
@@ -8,6 +9,9 @@ api = Blueprint('api', __name__, url_prefix="/api")
 
 
 BASE_URL = 'https://linxsolutions.net'
+
+with open('/var/www/linx/sparkpost.txt', 'r') as api_key:
+	sp = SparkPost(api_key.read())
 
 
 def generate_random():
@@ -27,11 +31,19 @@ def send_confirmation_email(fname, email, confirmation_key):
 		<br><br>
 		<small>P.S. If you did not make an account, please disregard this email.</small>
 	'''
-	send_email(email, body)
+	send_email(email, 'Welcome to Linx!', body)
 
 
-def send_email(email, body):
-	pass
+def send_email(email, subject, body):
+	response = sp.transmissions.send(
+	    use_sandbox=False,
+	    recipients=[email],
+	    html=body,
+	    from_email='welcome@linxsolutions.net',
+	    subject=subject
+	)
+
+	print response
 
 
 def error_msg(msg):
@@ -62,10 +74,6 @@ def build_response(response):
 	return resp
 
 
-# @api.route('/lesson/<username>/<confirmation_key>')
-# def lesson(username, confirmation_key):
-# 	user = g.mongo.db.linx.users.find_one({"username": username, "confirmation_key": confirmation_key})
-
 @api.route('/lessons', methods=['POST'])
 def lessons():
 	if request.method == 'POST':
@@ -89,15 +97,6 @@ def lessons():
 
 	else:
 		return error_msg('Failed')
-
-
-
-# @api.route('/media', methods=['POST'])
-# def media():
-# 	if request.method == 'POST':
-# 		username = request.form['username']
-# 		language_id = request.form['language_id']
-# 		lesson_id = request.form['lesson_id']
 
 
 		
