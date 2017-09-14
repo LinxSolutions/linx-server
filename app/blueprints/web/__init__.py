@@ -10,7 +10,7 @@ api = Blueprint('api', __name__, url_prefix="/api")
 
 BASE_URL = 'https://linxsolutions.net'
 
-with open('/var/www/linx/sparkpost.txt', 'r') as api_key:
+with open('../sparkpost.txt', 'r') as api_key:
 	sp = SparkPost(api_key.read())
 
 
@@ -115,8 +115,8 @@ def lesson():
 		for lesson in language['lessons']:
 			for media in lesson['media']:
 				if media['title'] == title:
-					for q in lesson['questions']:
-						q['lesson_id'] = lesson['lesson_id']
+					for i in range(len(lesson['questions'])):
+						lesson['questions'][i]['lesson_id'] = lesson['lesson_id']
 					questions.extend(lesson['questions'])
 					break
 
@@ -129,13 +129,13 @@ def lesson():
 			words = caption['text'].lower().split()
 			for word in words:
 				for question in questions:
-					if question['translation'] == '' or question['transliteration'] == '':
-						if word == question['word']:
-							if len(word) > 4:
-								if word not in l:
-									print word
-									final.append(question)
-									l.append(word)
+					# if question['translation'] == '' or question['transliteration'] == '':
+					if word == question['word']:
+						if len(word) > 4:
+							if word not in l:
+								print word
+								final.append(question)
+								l.append(word)
 
 		return success_msg(final)
 	else:
@@ -149,64 +149,21 @@ def lesson():
 def progress():
 	if request.method == 'POST':
 		username = request.form['username']
-		language_id = request.form['language_id']
-		lesson_id = request.form['lesson_id']
-		question_id = request.form['question_id']
+		language_id = str(request.form['language_id'])
+		lesson_id = str(request.form['lesson_id'])
+		question_id = str(request.form['question_id'])
 		mark = request.form['mark']
 
-		user_lessons = g.mongo.db.linx.users.find_one({"username": username})['languages'][language_id-1]['lessons']
+		resp = g.mongo.db.linx.users.update(
+			{ 
+				"username" : username
+			},
+			{ '$inc': { "languages."+language_id+".lessons."+lesson_id+".questions."+question_id+"."+mark : 1 } }
+		)
 
-		exists = False
+		
 
-		for lesson in user_lessons:
-			if lesson_id == lesson['lesson_id']:
-				for question in lesson['question']:
-					if question_id in question['question_id']:
-						
-						user_lessons.update(
-						  { 
-						    "username" : username, 
-						    "languages.language_id" : language_id, 
-						    "languages.lessons.lesson_id" : lesson_id,
-						    "languages.lessons.questions.question_id": question_id
-						  },
-						  { 
-							'$set': { "languages.lessons.questions.$."+mark : question[mark]+1 } 
-						  },
-						  false,
-						  true
-						)
-						exists = True
-						break
-
-
-		if exists is not True:
-			correct = 0
-			incorrect = 0
-
-			if mark == 'correct':
-				correct = 1
-			else:
-				incorrect = 1
-
-			user_lessons.update(
-				{
-					"username" : username, 
-				    "languages.language_id" : language_id, 
-				    "languages.lessons.lesson_id" : lesson_id
-				}, 
-				{
-					'$push': {
-						'questions': {
-							'question_id': question_id,
-							'correct': correct,
-							'incorrect': incorrect
-						}
-					}
-				}
-			)
-
-		return success_msg(lessons)
+		return success_msg(resp)
 	return error_msg('Failed')
 
 
@@ -277,16 +234,33 @@ def signup():
 				if username_exist is None:
 					password = g.bcrypt.generate_password_hash(u['password'])
 					confirmation_key = generate_random()
+
+					language = g.mongo.db.linx.languages.find_one({})['0']
+					lessons = []
+
+					for i in range(0, len(language['lessons'])):
+						l = {"lesson_id": i+1, "questions": []}
+						for j in range(0, len(language['lessons'][i]['questions'])):
+							l['questions'].append({"question_id": j+1, "correct": 0, "incorrect": 0})
+						lessons.append(l)
 					
 					u['password'] = password
 					u['confirmation_key'] = confirmation_key
 					u['plan_id'] = 0
-					u['language_id'] = [1]
+					u['languages'] = [
+						{
+							"language_id": 1,
+							"name": "Japanese",
+							"lessons": lessons
+						}
+					]
+
+
 
 					user_id = g.mongo.db.linx.users.insert_one(u)
 
 					if user_id is not None:
-						send_confirmation_email(u['fname'], u['email'], u['confirmation_key'])
+						# send_confirmation_email(u['fname'], u['email'], u['confirmation_key'])
 						return success_msg({'email': u['email']})
 					else:
 						return error_msg('An unexpected error has occured.')
