@@ -1,4 +1,4 @@
-from flask import Blueprint, request, Response, redirect
+from flask import Blueprint, request, Response, redirect, url_for
 from sparkpost import SparkPost
 import json
 import string
@@ -17,8 +17,8 @@ with open('../sparkpost.txt', 'r') as api_key:
 def generate_random():
 	return ''.join(random.SystemRandom().choice(string.ascii_uppercase + string.digits) for _ in range(8))
 
-def send_confirmation_email(fname, email, confirmation_key):
-	confirmation_url = BASE_URL+'/api/confirm/'+confirmation_key
+def send_confirmation_email(fname, email, username, confirmation_key):
+	confirmation_url = BASE_URL+'/api/confirm/'+username+'/'+confirmation_key
 	body = '''
 		Hi '''+fname+''',<br><br>
 		You've just created an account on <a href="'''+BASE_URL+'''">Linx</a> but there's still one more step before you can start
@@ -80,21 +80,23 @@ def lessons():
 		username = request.form['username']
 		language_id = int(request.form['language_id'])
 
-		language = g.mongo.db.linx.languages.find_one({})[str(language_id-1)]
+		language = g.mongo.db.linx.languages.find_one({})
 
-		user_lessons = g.mongo.db.linx.users.find_one({"username": username})['languages'][language_id-1]['lessons']
+		try:
+			user_lessons = g.mongo.db.linx.users.find_one({"username": username})['languages'][language_id-1]['lessons']
 
 
-		for lesson in language['lessons']:
-			for user_lesson in user_lessons:
-				if lesson['lesson_id'] == user_lesson['lesson_id']:
-					for question in lesson['questions']:
-						for user_question in user_lesson['questions']:
-							if question['question_id'] == user_question['question_id']:
-								question['results'] = user_question
+			for lesson in language['lessons']:
+				for user_lesson in user_lessons:
+					if lesson['lesson_id'] == user_lesson['lesson_id']:
+						for question in lesson['questions']:
+							for user_question in user_lesson['questions']:
+								if question['question_id'] == user_question['question_id']:
+									question['results'] = user_question
 
-		return success_msg(language['lessons'])
-
+			return success_msg(language['lessons'])
+		except:
+			return error_msg('Failed')
 	else:
 		return error_msg('Failed')
 
@@ -108,14 +110,14 @@ def lesson():
 		subtitle = request.form['subtitle']
 		language_id = int(request.form['language_id'])
 
-		language = g.mongo.db.linx.languages.find_one({})[str(language_id-1)]
+		language = g.mongo.db.linx.languages.find_one({})
 
 		questions = []
 
 		for lesson in language['lessons']:
 			for media in lesson['media']:
 				if media['title'] == title:
-					for i in range(len(lesson['questions'])):
+					for i in range(0, len(lesson['questions'])):
 						lesson['questions'][i]['lesson_id'] = lesson['lesson_id']
 					questions.extend(lesson['questions'])
 					break
@@ -133,7 +135,7 @@ def lesson():
 					if word == question['word']:
 						if len(word) > 4:
 							if word not in l:
-								print word
+								#print word
 								final.append(question)
 								l.append(word)
 
@@ -149,9 +151,9 @@ def lesson():
 def progress():
 	if request.method == 'POST':
 		username = request.form['username']
-		language_id = str(request.form['language_id'])
-		lesson_id = str(request.form['lesson_id'])
-		question_id = str(request.form['question_id'])
+		language_id = str(int(request.form['language_id'])-1)
+		lesson_id = str(int(request.form['lesson_id'])-1)
+		question_id = str(int(request.form['question_id'])-1)
 		mark = request.form['mark']
 
 		resp = g.mongo.db.linx.users.update(
@@ -161,7 +163,7 @@ def progress():
 			{ '$inc': { "languages."+language_id+".lessons."+lesson_id+".questions."+question_id+"."+mark : 1 } }
 		)
 
-		
+		resp['_id']= ''
 
 		return success_msg(resp)
 	return error_msg('Failed')
@@ -196,7 +198,7 @@ def confirm(username, confirmation_key):
 	user = g.mongo.db.linx.users.find_one({"username": username, "confirmation_key": confirmation_key})
 	if user is not None:
 		g.mongo.db.linx.users.update_one({"username": username}, {"$set": {"isConfirmed": True}})
-		return success_msg(get_user(user))
+		return redirect(url_for('success'))
 	return error_msg('the user does not exist')
 
 
@@ -206,7 +208,7 @@ def login():
 		username = request.form['username']
 		password = request.form['password']
 		user = g.mongo.db.linx.users.find_one({"username": username})
-		print user
+		#print user
 		if user is not None:
 			if g.bcrypt.check_password_hash(user["password"], password):
 				if user['isConfirmed']:
@@ -235,13 +237,15 @@ def signup():
 					password = g.bcrypt.generate_password_hash(u['password'])
 					confirmation_key = generate_random()
 
-					language = g.mongo.db.linx.languages.find_one({})['0']
+					language = g.mongo.db.linx.languages.find_one({})
 					lessons = []
 
 					for i in range(0, len(language['lessons'])):
 						l = {"lesson_id": i+1, "questions": []}
-						for j in range(0, len(language['lessons'][i]['questions'])):
-							l['questions'].append({"question_id": j+1, "correct": 0, "incorrect": 0})
+						count = 1
+						for question in language['lessons'][i]['questions']:
+							l['questions'].append({"question_id": count, "correct": 0, "incorrect": 0})
+							count += 1
 						lessons.append(l)
 					
 					u['password'] = password
@@ -260,7 +264,7 @@ def signup():
 					user_id = g.mongo.db.linx.users.insert_one(u)
 
 					if user_id is not None:
-						# send_confirmation_email(u['fname'], u['email'], u['confirmation_key'])
+						send_confirmation_email(u['fname'], u['email'], u['username'], u['confirmation_key'])
 						return success_msg({'email': u['email']})
 					else:
 						return error_msg('An unexpected error has occured.')

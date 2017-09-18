@@ -32,6 +32,10 @@ def signup():
 def anime():
 	return render_template('template.html', page='anime.html')
 
+@app.route('/success')
+def success():
+    return render_template('template.html', page='success.html')
+
 
 @app.context_processor
 def override_url_for():
