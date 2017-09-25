@@ -10,8 +10,8 @@ api = Blueprint('api', __name__, url_prefix="/api")
 
 BASE_URL = 'https://linxsolutions.net'
 
-with open('../sparkpost.txt', 'r') as api_key:
-	sp = SparkPost(api_key.read())
+#with open('../../../sparkpost.txt', 'r') as api_key:
+sp = SparkPost('1b98111f51fd10764b736f0c9293e2ee6f5cc01f')
 
 
 def generate_random():
