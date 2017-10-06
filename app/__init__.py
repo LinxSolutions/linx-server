@@ -1,5 +1,6 @@
 from flask import Flask, render_template, url_for, request, redirect
 from blueprints.web import api
+#from blueprints.admin import admin
 from flask_pymongo import PyMongo
 from flask_bcrypt import Bcrypt
 from blueprints.web import g
@@ -7,6 +8,7 @@ import os
 
 app = Flask(__name__)
 app.register_blueprint(api)
+#app.register_blueprint(admin)
 bcrypt = Bcrypt(app)
 mongo = PyMongo(app)
 

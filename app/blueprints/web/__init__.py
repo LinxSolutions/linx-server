@@ -177,20 +177,56 @@ def progress():
 def scrap():
 	c = request.form['captions']
 	c = json.loads(c)
+
+	inserted = None
+	media = g.mongo.db.linx.captions.find_one({'title': c['title']})	
+
+	if media is None:
+			 
+		inserted = g.mongo.db.linx.captions.insert_one({
+			"title": c['title'],
+			"episodes": [
+				{
+					"title": c['subtitle'],
+					"url": c['url'],
+					"captions": c['captions']
+				}
+			]
+		})
 	
-	exists = g.mongo.db.linx.captions.find_one({'title': c['title'], 'subtitle': c['subtitle']})
-
-	if exists is None:
-
-		inserted = g.mongo.db.linx.captions.insert_one(c)
-
-		if inserted is not None:
-			return success_msg({'inserted': True})
-		else:
-			return error_msg('Failed to insert captions')
-
+	else:
+		if 'episodes' in media:
+			exists = False
+			for episode in media['episodes']:
+				if c['subtitle'] == episode['title']:
+					exists = True
+					if len(c['captions']) > len(episode['captions']):
+						inserted = g.mongo.db.linx.captions.update_one({
+							'title': c['title'],
+							'episodes.$.title': c['subtitle']
+						}, {'$set': {'captions': c['captions']}})
+					break
+			if exists is not True:
+				inserted = g.mongo.db.linx.captions.update({
+					'title': c['title']
+				}, {'$push': {'episodes': {
+					'title': c['subtitle'],
+					'url': c['url'],
+					'captions': c['captions']
+				}}})
+	
+	if inserted is not None:
+		# send to queue
+		return success_msg({'inserted': True})
 	else:
 		return error_msg('Failed to insert captions')
+
+
+
+
+
+
+
 
 
 @api.route('/confirm/<username>/<confirmation_key>')
@@ -202,13 +238,29 @@ def confirm(username, confirmation_key):
 	return error_msg('the user does not exist')
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @api.route('/login', methods=['GET', 'POST'])
 def login():
 	if request.method == 'POST':
 		username = request.form['username']
 		password = request.form['password']
 		user = g.mongo.db.linx.users.find_one({"username": username})
-		#print user
+		
 		if user is not None:
 			if g.bcrypt.check_password_hash(user["password"], password):
 				if user['isConfirmed']:
@@ -218,6 +270,27 @@ def login():
 				return error_msg('A confirmation email has been sent to '+user['email']+'.')
 		return error_msg('Username or Password Incorrect')
 	return error_msg('Something weird just happened at our end.')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 @api.route('/signup', methods=['GET', 'POST'])
@@ -276,6 +349,19 @@ def signup():
 			return error_msg('Passwords do not match.')
 	else:
 		return error_msg('Something went wrong.')
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
