@@ -1,0 +1,97 @@
+<section class="hero is-fullheight">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns">
+
+        <div class="column"></div>
+
+        <div class="column">
+
+          <center>
+            <figure class="image is-96x96">
+              <img src="{{ url_for('static', filename='img/icon.png') }}">
+            </figure>
+          </center>
+
+          <br>
+
+          <article id="login" class="message is-dark">
+            <div class="message-header">
+              <p>Login</p>
+            </div>
+            <div class="message-body">
+
+              <div id="status" class="has-text-centered"></div>
+
+
+              <div class="field">
+                <label class="label">Username</label>
+                <div class="control">
+                  <input id="username" class="input" type="text" placeholder="johnDoe12" autocomplete="off">
+                </div>
+              </div>
+
+
+              <div class="field">
+                <label class="label">Password</label>
+                <div class="control">
+                  <input id="password" class="input" type="password" placeholder="••••••••" autocomplete="off">
+                </div>
+              </div>
+
+
+              <br>
+              <a id="loginBtn" onclick="login()" class="button is-dark is-fullwidth is-medium">Continue Learning</a>
+
+
+
+            </div>
+          </article>
+
+
+
+
+          <script type="text/javascript">
+
+          function login(){
+
+            $('#loginBtn').addClass('is-loading');
+
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+
+
+             $.ajax ({
+                url: "{{ url_for('api.login') }}",
+                type: "POST",
+                data: JSON.stringify({
+                    username: username,
+                    password: password
+                }),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function(result){
+                    console.log(result);
+                    if(result.status == 'success'){
+                        window.location.replace("{{ url_for('dashboard.index') }}")
+                    } else {
+                        document.getElementById('status').innerHTML = result.message;
+                    }
+                    $('#signupBtn').removeClass('is-loading');
+                }
+            });
+
+
+          }
+
+          </script>
+
+
+        </div>
+
+        <div class="column"></div>
+
+      </div>
+    </div>
+  </div>
+</section>

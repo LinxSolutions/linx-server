@@ -1,0 +1,32 @@
+<div class="container">
+
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="/">
+                <img src="/static/img/logo-horizontal.png?q=1505757571" alt="" width="150">
+            </a>
+
+            <div class="navbar-burger burger" data-target="navMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+
+        <div id="navMenu" class="navbar-menu">
+
+
+            <div class="navbar-end">
+                <a class="nav-item" onclick="{{ url_for('login') }}">
+                    Login
+                </a>
+
+                <a class="nav-item" onclick="{{ url_for('signup') }}">
+                    Sign Up
+                </a>
+            </div>
+        </div>
+    </nav>
+
+
+</div>

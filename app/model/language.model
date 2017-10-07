@@ -1,0 +1,15 @@
+language
+    part 0: alphabets
+    part 1: words
+    part 2: grammar
+
+
+sentences
+    phrases
+        grammar test
+        fill in the blank
+    words
+        nouns
+        pronouns
+        adjectives
+        adverbs
