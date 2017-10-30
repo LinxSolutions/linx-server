@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/font-awesome.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bulma.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    </head>
+
+    <body>
+
+        <section class="hero bg is-large has-text-centered">
+          <div class="hero-head">
+            <nav class="navbar is-white">
+              <div class="container">
+                <div class="navbar-brand">
+                  <a class="navbar-item" onclick="$('html,body').animate({ scrollTop: $('body').offset().top }, 'slow');">
+                    <img src="{{ url_for('static', filename='img/logo-horizontal.png') }}" alt="Linx Solutions" width="150">
+                  </a>
+                </div>
+                <di class="navbar-menu">
+                  <div class="navbar-end">
+                    <a class="navbar-item" onclick="$('html,body').animate({ scrollTop: $('#about').offset().top - 65 }, 'slow');">
+                      About
+                    </a>
+                    <a class="navbar-item" onclick="$('html,body').animate({ scrollTop: $('#contact').offset().top - 65 }, 'slow');">
+                      Contact
+                    </a>
+                    <a class="navbar-item" onclick="$('html,body').animate({ scrollTop: $('#pricing').offset().top - 65 }, 'slow');">
+                      Pricing
+                    </a>
+                    <a class="navbar-item" onclick="$('html,body').animate({ scrollTop: $('#products').offset().top - 65 }, 'slow');">
+                      Products
+                    </a>
+                  </div>
+                </di>
+              </div>
+            </nav>
+          </div>
+
+          <div class="hero-body">
+            <div class="container">
+                <h1 class="title">
+                    Watch Your Favorite Shows. Learn a Language.
+                </h1>
+                <h2 class="subtitle">
+                    Stream on Netflix, Hulu, Crunchyroll and More with over 70 Titles to Choose From.
+                </h2>
+                <a onclick="$('html,body').animate({ scrollTop: $('#subscribe').offset().top - 65 }, 'slow');" class="button is-info">Download</a>
+            </div>
+          </div>
+        </section>
+
+
+        <section id="howitworks" class="section">
+            <div class="container has-text-centered">
+                <h1 class="title">
+                    How it Works.
+                </h1>
+                <p>
+                    Coming Soon...
+                </p>
+            </div>
+        </section>
+
+
+        <section id="products" class="hero is-light">
+            <div class="hero-body">
+                <div class="container has-text-centered">
+                <h1 class="title">
+                    Our Products.
+                </h1>
+                <p>
+                    Coming Soon...
+                </p>
+            </div>
+            </div>
+        </section>
+
+
+        <section id="pricing" class="section">
+            <div class="container has-text-centered">
+                <h1 class="title">
+                    Pricing Guide.
+                </h1>
+
+
+                <div class="columns">
+                    <div class="column is-1"></div>
+                    <div class="column is-3">
+                        <div class="box">
+                            <h2 class="subtitle">
+                                Basic
+                            </h2>
+
+                            <p class="content">
+                                1 Language
+                            </p>
+                            <p class="content">
+                                Desktop only
+                            </p>
+                            <p class="content">
+                               Up to elementary level
+                            </p>
+                            <p class="content">
+                                Overall progress recorded only
+                            </p>
+                            <br>
+                            <p class="content has-text-weight-bold">
+                                Free
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="column is-3">
+                        <div class="box">
+                            <h2 class="subtitle">
+                                Standard
+                            </h2>
+
+                            <p class="content">
+                                All supported languages
+                            </p>
+                            <p class="content">
+                                All supported platforms
+                            </p>
+                            <p class="content">
+                               Up to a professional level
+                            </p>
+                            <p class="content">
+                                Overall and detailed progress recorded
+                            </p>
+                            <br>
+                            <p class="content has-text-weight-bold">
+                                $2.99/Month
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="column is-1"></div>
+
+                    <div class="column is-3">
+                        <div class="box">
+                            <h2 class="subtitle">
+                                Institution
+                            </h2>
+
+                            <p class="content">
+                                All supported languages
+                            </p>
+                            <p class="content">
+                                All supported platforms
+                            </p>
+                            <p class="content">
+                               Up to a professional level
+                            </p>
+                            <p class="content">
+                               Progress of all students and ability to assign homework
+                            </p>
+                            <p class="content has-text-weight-bold">
+                                $100.00/Student A Year
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+
+
+        <section id="about" class="hero is-light">
+            <div class="hero-body">
+                <div class="container has-text-centered">
+                <h1 class="title">
+                    About Us.
+                </h1>
+
+
+                <div class="columns">
+                    <div class="column"></div>
+                    <div class="column is-10">
+                        <h2 class="subtitle">
+                            Our Company
+                        </h2>
+
+                        <p class="content">
+                            Linx aims to disrupt the language learning space by offering a unique learning experience when
+                            attempting to learn
+                            a new language. What started out as a 24 hour hackathon project during the Global Hackathon Series
+                            in 2017, Linx was developed by a team of 4
+                            software engineers in New York City in the span of 12 weeks as park of AngelHack's <a href="https://angelhack.com/hackcelerator" target="_blank">pre-accelterator</a> program.
+                        </p>
+
+                        <h2 class="subtitle">
+                            Our Team
+                        </h2>
+
+                        <div class="columns">
+                            <div class="column">
+                                <center><div class="outer-circular"><div class="circular circular-mir"></div></div></center>
+                                Mir Raonaq
+                            </div>
+
+                            <div class="column">
+                                <center><div class="outer-circular"><div class="circular circular-md"></div></div></center>
+                                Md Islam
+                            </div>
+
+                            <div class="column">
+                                <center><div class="outer-circular"><div class="circular circular-harrison"></div></div></center>
+                                Harrison Ngo
+                            </div>
+
+                            <div class="column">
+                                <center><div class="outer-circular"><div class="circular circular-alex"></div></div></center>
+                                Alexander Pena-Cruz
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column"></div>
+                </div>
+
+
+            </div>
+            </div>
+        </section>
+
+
+        <section id="contact" class="hero is-white">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title has-text-centered">
+                        Contact Us.
+                    </h1>
+
+                    <div class="columns">
+                        <div class="column"></div>
+
+                        <div class="column is-10">
+                            <div class="columns">
+                                <div class="column">
+                                    <div class="field">
+                                      <label class="label">Name</label>
+                                      <div class="control">
+                                        <input class="input is-large" type="text" placeholder="e.g. Jane Doe">
+                                      </div>
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <div class="field">
+                                      <label class="label">Email</label>
+                                      <div class="control">
+                                        <input class="input is-large" type="email" placeholder="e.g. jane.doe@example.com">
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="field">
+                              <label class="label">Message</label>
+                              <div class="control">
+                                <textarea class="textarea is-large" type="text" placeholder="text here..." rows="10"></textarea>
+                              </div>
+                            </div>
+
+                            <p class="field">
+                                <a href="#" class="button is-success is-large is-fullwidth">
+                                    <span class="icon">
+                                      <i class="fa fa-paper-plane"></i>
+                                    </span>
+                                    <span>Send</span>
+                                </a>
+                            </p>
+                        </div>
+
+
+                        <div class="column"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="subscribe" class="hero bg2 is-medium is-dark">
+            <div class="hero-body">
+                <div class="container has-text-centered">
+                    <h3 class="title">Sign Up for Beta.</h3>
+                    <h4 class="subtitle is-4">We'll let you know when we're ready.</h4>
+
+                    <form class="field has-addons" action="//linxsolutions.us16.list-manage.com/subscribe/post?u=980682fc5f7fba3023e0ef1e4&amp;id=96a0653001" method="post">
+                        <p class="control is-expanded">
+                            <input class="input is-fullwidth is-large" type="email" name="EMAIL" placeholder="jane.doe@example.com" autocomplete="off">
+                        </p>
+
+                        <p class="control">
+                            </p><div style="position:absolute;left:-5000px;"><input type="text" name="b_980682fc5f7fba3023e0ef1e4_96a0653001" tabindex="-1" value=""></div>
+                            <div class="clear"><input type="submit" value="SUBSCRIBE" name="subscribe" id="mc-embedded-subscribe" class="button is-white is-large is-fullwidth"></div>
+                        <p></p>
+                    </form>
+
+                    <h5 class="subtitle is-5">Skip the line, take this <a style="text-decoration:underline;" href="https://docs.google.com/forms/d/e/1FAIpQLSc4vOHVHKiogjZaHzrUfCshh6lLElefYD7KDTN3LFfSY7c9SQ/viewform?usp=sf_link">survey</a>.</h5>
+                </div>
+            </div>
+        </section>
+
+
+        <footer class="footer">
+          <div class="container">
+            <div class="columns">
+                <div class="column">
+                    <h3 class="subtitle">Company</h3>
+                    <a href="#">About Us</a><br>
+                    <a href="#">Blog</a><br>
+                    <a href="#">Careers</a><br>
+                </div>
+
+                <div class="column">
+                    <h3 class="subtitle">Product</h3>
+                    <a href="#">How it Works</a><br>
+                    <a href="#">Platforms</a><br>
+                    <a href="#">Pricing</a><br>
+                    <a href="#">Status</a><br>
+                </div>
+
+                <div class="column">
+                    <h3 class="subtitle">Connect</h3>
+                    <a href="#">AngelList</a><br>
+                    <a href="#">Contact Us</a><br>
+                    <a href="#">Community</a><br>
+                    <a href="#">Facebook</a><br>
+                    <a href="#">Twitter</a><br>
+                </div>
+
+                <div class="column is-4 has-text-centered is-centered">
+                    <div>
+                        <h3 class="subtitle">Start learning a new language today.</h3>
+                        <a href="#" class="button is-info is-outlined">Download</a>
+                    </div>
+
+                </div>
+            </div>
+          </div>
+
+          <div class="columns">
+              <div class="column"></div>
+
+              <div class="column is-8">
+                  <div class="columns">
+                      <div class="column is-5">
+                        <img src="{{ url_for('static', filename='img/logo-horizontal-wt.png') }}">
+                      </div>
+
+                      <div class="column is-centered">
+                          <div>
+                              <a href="#">Terms & Conditions</a>
+                              &middot;
+                              <a href="#">Privacy Policy</a>
+                              &middot;
+                              <a href="#">Content Takedown</a>
+                              <p>
+                                  &copy; 2017 Linx Solutions, Inc.
+                              </p>
+                          </div>
+
+                      </div>
+                  </div>
+              </div>
+
+              <div class="column"></div>
+          </div>
+        </footer>
+
+        <script type="text/javascript" src="{{ url_for('static', filename='js/arrow.js') }}"></script>
+
+    </body>
+</html>
