@@ -1,0 +1,46 @@
+.hero-bg {
+    background-image: url("../img/circle-bg.jpg");
+    background-position: bottom center;
+    background-size: cover;
+}
+
+.navbar-item img {
+    max-height: 100%;
+}
+
+.is-space {
+    margin-bottom: 250px;
+}
+
+.number {
+    background-color: #C86F08;
+    color:#ffffff;
+    position: absolute;
+    z-index:10;
+    left:-15px;
+    top:-15px;
+    min-width: 2em;
+}
+
+a.navbar-item:hover, a.navbar-item.is-active, .navbar-link:hover, .navbar-link.is-active {
+    background-color: transparent;
+}
+
+.button.orange {
+    background-color: #C86F08;
+}
+
+#success {
+    display: none;
+}
+
+#status {
+    color:red;
+    margin-bottom:10px;
+    font-weight:bold;
+}
+
+#navMenu {
+    display:flex;
+    align-items:center;
+}
